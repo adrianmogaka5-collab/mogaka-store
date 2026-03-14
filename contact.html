@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Mogaka Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>MOGAKA ONLINE STORE</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart (<span id="cartCount">0</span>)</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <main style="max-width: 600px; margin: 40px auto; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+        <h2 style="text-align: center; color: #333;">Get In Touch</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 30px;">Have a question? Send us a message and we'll reply within 24 hours.</p>
+
+        <form onsubmit="handleContact(event)" style="display: flex; flex-direction: column; gap: 15px;">
+            <div>
+                <label for="name" style="display: block; margin-bottom: 5px; font-weight: bold;">Name</label>
+                <input type="text" id="name" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+            </div>
+
+            <div>
+                <label for="email" style="display: block; margin-bottom: 5px; font-weight: bold;">Email Address</label>
+                <input type="email" id="email" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+            </div>
+
+            <div>
+                <label for="message" style="display: block; margin-bottom: 5px; font-weight: bold;">Your Message</label>
+                <textarea id="message" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; height: 120px;"></textarea>
+            </div>
+
+            <button type="submit" class="buy-btn" style="background-color: #333; color: white; padding: 12px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">SEND MESSAGE</button>
+        </form>
+
+        <div style="margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px; text-align: center;">
+            <p><strong>Email:</strong> support@mogakastore.com</p>
+            <p><strong>WhatsApp:</strong> +254 700 000000</p>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Mogaka Online Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>MOGAKA ONLINE STORE</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart (<span id="cartCount">0</span>)</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <section class="hero" style="text-align: center; padding: 60px 20px; background: #333; color: white;">
+        <h2>Upgrade Your Tech Lifestyle</h2>
+        <p>Quality Laptops, Smartphones, and Accessories at unbeatable prices.</p>
+        <a href="products.html" class="buy-btn" style="text-decoration: none; display: inline-block; margin-top: 20px; padding: 15px 30px;">SHOP ALL PRODUCTS</a>
+    </section>
+
+    <section style="padding: 50px 20px; background-color: #f4f4f4;">
+        <h2 style="text-align: center; color: #333; margin-bottom: 40px; font-size: 2rem;">Featured Deals</h2>
+        <div style="display: flex; gap: 25px; justify-content: center; flex-wrap: wrap; max-width: 1200px; margin: 0 auto;">
+            
+            <div class="product-card" style="position: relative;">
+                <div style="background: #ff4757; color: white; padding: 5px 12px; position: absolute; top: 10px; left: 10px; border-radius: 5px; font-size: 0.8rem; font-weight: bold; z-index: 10;">HOT DEAL</div>
+                <img src="laptop.jpg" alt="Laptop" onerror="this.src='https://via.placeholder.com/300x200?text=Laptop'">
+                <h3>Student Laptop Pro</h3>
+                <p>$799.00</p>
+                <button class="buy-btn" onclick="addToCart('Student Laptop Pro', 799)">Add to Cart</button>
+            </div>
+
+            <div class="product-card" style="position: relative;">
+                <div style="background: #ffa502; color: white; padding: 5px 12px; position: absolute; top: 10px; left: 10px; border-radius: 5px; font-size: 0.8rem; font-weight: bold; z-index: 10;">BEST SELLER</div>
+                <img src="phone.jpg" alt="Phone" onerror="this.src='https://via.placeholder.com/300x200?text=Phone'">
+                <h3>Smartphone X+</h3>
+                <p>$550.00</p>
+                <button class="buy-btn" onclick="addToCart('Smartphone X+', 550)">Add to Cart</button>
+            </div>
+
+        </div>
+    </section>
+
+    <footer style="background-color: #222; color: white; padding: 40px 20px; margin-top: 50px;">
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px;">
+            <div style="flex: 1; min-width: 250px;">
+                <h3>MOGAKA STORE</h3>
+                <p style="color: #bbb; font-size: 0.9rem;">Best electronics in Kenya with fast delivery.</p>
+            </div>
+            <div style="flex: 1; min-width: 150px;">
+                <h3>QUICK LINKS</h3>
+                <a href="index.html" style="color: #bbb; display: block; margin-top: 5px;">Home</a>
+                <a href="products.html" style="color: #bbb; display: block; margin-top: 5px;">Shop</a>
+            </div>
+            <div style="flex: 1; min-width: 250px;">
+                <h3>CONTACT</h3>
+                <p style="color: #bbb;">📞 +254 700 000 000</p>
+                <p style="color: #bbb;">✉️ support@mogakastore.com</p>
+            </div>
+        </div>
+        <div style="text-align: center; border-top: 1px solid #444; margin-top: 40px; padding-top: 20px; font-size: 0.8rem;">
+            &copy; 2026 Mogaka Online Store.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
