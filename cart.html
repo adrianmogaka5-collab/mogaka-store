@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - Mogaka Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>MOGAKA ONLINE STORE</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart (<span id="cartCount">0</span>)</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <select id="currencySelector" onchange="updateCurrency()">
+            <option value="USD">USD ($)</option>
+            <option value="KSH">KSH (KSh)</option>
+        </select>
+    </nav>
+
+    <main style="max-width: 900px; margin: 40px auto; padding: 20px;">
+        <h2 style="text-align: center; color: #16213e;">Your Shopping Cart</h2>
+        
+        <div style="background: white; border-radius: 15px; padding: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                <thead>
+                    <tr style="border-bottom: 2px solid #f4f4f4;">
+                        <th style="padding: 10px;">Product</th>
+                        <th style="padding: 10px;">Price</th>
+                        <th style="padding: 10px;">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="cartTableBody">
+                    </tbody>
+            </table>
+
+            <div style="text-align: right; margin-top: 20px; font-size: 1.2rem;">
+                <strong>Total: <span id="cartTotal"

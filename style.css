@@ -1,0 +1,51 @@
+/* Core Styling */
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #f4f7f6; color: #333; line-height: 1.6; }
+header { background-color: #1a1a2e; color: white; text-align: center; padding: 40px 20px; }
+
+/* Navigation */
+nav { 
+    background-color: #16213e; padding: 15px; text-align: center; 
+    position: sticky; top: 0; z-index: 1000; 
+    display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 15px;
+}
+nav a { color: #fff; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: 0.3s; }
+nav a:hover { color: #2ecc71; }
+#currencySelector { padding: 5px; border-radius: 5px; background: #222; color: white; border: 1px solid #444; outline: none; }
+
+/* Buttons & Filters */
+.filter-btn {
+    background-color: #fff; color: #16213e; border: 2px solid #16213e;
+    padding: 8px 20px; border-radius: 25px; cursor: pointer; font-weight: bold; transition: 0.3s;
+}
+.filter-btn:hover, .filter-btn.active { background-color: #16213e; color: #fff; }
+
+/* Product Cards */
+.product-container { display: flex; justify-content: center; gap: 25px; padding: 40px 20px; flex-wrap: wrap; }
+.product-card { 
+    background: white; border-radius: 15px; padding: 20px; text-align: center; 
+    width: 280px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); position: relative; transition: 0.3s; 
+}
+.product-card:hover { transform: translateY(-8px); }
+.product-card img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; }
+
+/* Conversion Boosters (Timer & Badges) */
+.badge { position: absolute; top: 15px; left: 15px; padding: 5px 12px; border-radius: 5px; color: white; font-size: 0.7rem; font-weight: bold; z-index: 10; }
+.hot { background-color: #e74c3c; }
+.seller { background-color: #f39c12; }
+
+.timer-container { background-color: #e74c3c; color: white; padding: 8px; border-radius: 8px; margin: 10px 0; font-size: 0.8rem; display: flex; justify-content: center; gap: 8px; }
+.rating { color: #f39c12; font-size: 0.85rem; margin-bottom: 8px; }
+.price-tag { font-size: 1.25rem; font-weight: bold; color: #16213e; display: block; margin: 10px 0; }
+
+.buy-btn { background-color: #27ae60; color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s; }
+.buy-btn:hover { background-color: #2ecc71; }
+
+/* Sections */
+.review-section, .legal-container, .about-section { max-width: 900px; margin: 40px auto; padding: 30px; background: white; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+.newsletter { background-color: #16213e; color: white; padding: 50px 20px; text-align: center; }
+.newsletter input { padding: 12px; width: 250px; border-radius: 5px; border: none; margin-bottom: 10px; }
+
+/* Global WhatsApp */
+.whatsapp-float { position: fixed; bottom: 30px; right: 30px; background-color: #25d366; color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 9999; }
+
+footer { background-color: #1a1a2e; color: #bbb; padding: 40px 20px; text-align: center; border-top: 1px solid #333; }

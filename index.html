@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mogaka Online Store - Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header><h1>MOGAKA ONLINE STORE</h1></header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart (<span id="cartCount">0</span>)</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <select id="currencySelector" onchange="updateCurrency()">
+            <option value="USD">USD ($)</option>
+            <option value="KSH">KSH (KSh)</option>
+        </select>
+    </nav>
+
+    <section style="text-align: center; padding: 60px 20px; background: #16213e; color: white;">
+        <h2>Premium Tech Delivered to Your Door</h2>
+        <p>Quality Laptops and Smartphones at the best prices in Kenya.</p>
+        <a href="products.html" class="buy-btn" style="text-decoration: none; display: inline-block; width: auto; margin-top: 20px; padding: 15px 30px;">SHOP NOW</a>
+    </section>
+
+    <section style="padding: 50px 20px;">
+        <h2 style="text-align: center;">Featured Deals</h2>
+        <div class="product-container">
+            <div class="product-card">
+                <div class="badge hot">Hot Deal</div>
+                <img src="laptop.jpg" alt="Laptop" onerror="this.src='https://via.placeholder.com/300x200?text=Laptop'">
+                <h3>Student Laptop Pro</h3>
+                <p class="price-tag" data-price="799">$799.00</p>
+                <button class="buy-btn" onclick="addToCart('Student Laptop Pro', 799)">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <a href="https://wa.me/254769128327" class="whatsapp-float" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA" width="25">
+        <span>Chat with us</span>
+    </a>
+
+    <footer>
+        <p>WhatsApp: +254 769 128327 | Email: support@mogakastore.com</p>
+        <p>&copy; 2026 Mogaka Online Store.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

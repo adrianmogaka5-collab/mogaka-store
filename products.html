@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog - Mogaka Online Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header><h1>MOGAKA TECH CATALOG</h1></header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart (<span id="cartCount">0</span>)</a>
+        <a href="about.html">About</a>
+        <a href="legal.html">Legal</a>
+        <a href="contact.html">Contact</a>
+        <select id="currencySelector" onchange="updateCurrency()">
+            <option value="USD">USD ($)</option>
+            <option value="KSH">KSH (KSh)</option>
+        </select>
+    </nav>
+
+    <div style="text-align: center; margin-top: 30px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+        <button class="filter-btn active" onclick="filterCategory('all')">All</button>
+        <button class="filter-btn" onclick="filterCategory('laptops')">Laptops</button>
+        <button class="filter-btn" onclick="filterCategory('phones')">Phones</button>
+        <button class="filter-btn" onclick="filterCategory('accessories')">Accessories</button>
+    </div>
+
+    <div style="max-width: 600px; margin: 20px auto; padding: 0 20px;">
+        <input type="text" id="productSearch" onkeyup="filterProducts()" placeholder="Search brands (HP, Apple, Samsung...)" style="width: 100%; padding: 15px; border-radius: 50px; border: 2px solid #16213e; outline: none;">
+    </div>
+
+    <div class="product-container">
+        <div class="product-card" data-category="phones">
+            <div class="badge hot">Flash Sale</div>
+            <img src="iphone15.jpg" alt="iPhone 15" onerror="this.src='https://via.placeholder.com/300x200?text=iPhone+15'">
+            <h3>iPhone 15 128GB</h3>
+            <div class="rating">⭐⭐⭐⭐⭐ (24 Reviews)</div>
+            <div class="timer-container">
+                <div class="timer-box"><span id="hours">12</span><small>Hrs</small></div>
+                <div class="timer-box"><span id="mins">00</span><small>Min</small></div>
+                <div class="timer-box"><span id="secs">00</span><small>Sec</small></div>
+            </div>
+            <span class="price-tag" data-price="1050">$1,050.00</span>
+            <button class="buy-btn" onclick="addToCart('iPhone 15 128GB', 1050)">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="laptops">
+            <div class="badge seller">Best Seller</div>
+            <img src="hp_laptop.jpg" alt="HP Laptop" onerror="this.src='https://via.placeholder.com/300x200?text=HP+Laptop'">
+            <h3>HP 250 G8 Core i3</h3>
+            <div class="rating">⭐⭐⭐⭐☆ (15 Reviews)</div>
+            <span class="price-tag" data-price="450">$450.00</span>
+            <button class="buy-btn" onclick="addToCart('HP 250 G8 Core i3', 450)">Add to Cart</button>
+        </div>
+
+        <div class="product-card" data-category="accessories">
+            <img src="oraimo.jpg" alt="Oraimo" onerror="this.src='https://via.placeholder.com/300x200?text=Oraimo+Powerbank'">
+            <h3>Oraimo Traveler 27k mAh</h3>
+            <div class="rating">⭐⭐⭐⭐⭐ (40 Reviews)</div>
+            <span class="price-tag" data-price="35">$35.00</span>
+            <button class="buy-btn" onclick="addToCart('Oraimo Traveler 27k mAh', 35)">Add to Cart</button>
+        </div>
+    </div>
+
+    <section class="review-section">
+        <h3>Customer Reviews</h3>
+        <div id="reviewList">
+            <p><strong>Bernadette K.</strong> ⭐⭐⭐⭐⭐<br>"Original quality and fast delivery to Kisii!"</p>
+        </div>
+        <hr>
+        <input type="text" id="revName" placeholder="Your Name" style="padding:10px; border-radius:5px; border:1px solid #ddd;">
+        <button class="buy-btn" style="width:auto;" onclick="submitReview()">Post Review</button>
+    </section>
+
+    <section class="newsletter">
+        <h3>Join Mogaka Tech Club</h3>
+        <p>Subscribe for exclusive discounts on new arrivals.</p>
+        <input type="email" id="newsEmail" placeholder="Enter Email">
+        <button class="buy-btn" style="width:auto;" onclick="subscribe()">Subscribe</button>
+    </section>
+
+    <a href="https://wa.me/254769128327" class="whatsapp-float" target="_blank">Chat with Mogaka</a>
+
+    <footer>
+        <p>WhatsApp: +254 769 128327 | Email: support@mogakastore.com</p>
+        <p>&copy; 2026 Mogaka Online Store. Nairobi, Kenya.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

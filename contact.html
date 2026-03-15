@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Mogaka Online Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>CONTACT MOGAKA STORE</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart (<span id="cartCount">0</span>)</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <main style="max-width: 800px; margin: 40px auto; padding: 20px; background: white; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+        <h2 style="text-align: center; color: #16213e;">Get In Touch</h2>
+        <p style="text-align: center; color: #666;">Have a question about a laptop or smartphone? Send us a message!</p>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 30px; margin-top: 30px;">
+            <div style="flex: 1; min-width: 250px;">
+                <h3 style="color: #27ae60;">Contact Details</h3>
+                <p><strong>Email:</strong> support@mogakastore.com</p>
+                <p><strong>WhatsApp:</strong> +254 769 128327</p>
+                <p><strong>Location:</strong> Nairobi, Kenya</p>
+                <p><strong>Hours:</strong> Mon - Sat: 8:00 AM - 7:00 PM</p>
+                
+                <div style="margin-top: 20px;">
+                    <a href="https://wa.me/254769128327" class="buy-btn" style="text-decoration: none; display: block; text-align: center; background: #25d366;">CHAT ON WHATSAPP</a>
+                </div>
+            </div>
+
+            <div style="flex: 1; min-width: 250px;">
+                <form onsubmit="alert('Thank you! Your message has been sent to Mogaka Store.'); return false;">
+                    <label>Your Name</label>
+                    <input type="text" placeholder="Enter your name" style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px;" required>
+                    
+                    <label>Message</label>
+                    <textarea rows="4" placeholder="How can we help you?" style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px;" required></textarea>
+                    
+                    <button type="submit" class="buy-btn" style="width: 100%;">SEND MESSAGE</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <a href="https://wa.me/254769128327?text=Hello%20Mogaka%20Store,%20I%20have%20a%20question." class="whatsapp-float" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA" width="25">
+        <span>Chat with us</span>
+    </a>
+
+    <footer>
+        <p>&copy; 2026 Mogaka Online Store. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

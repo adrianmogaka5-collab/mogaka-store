@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Success - Mogaka Store</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .success-container {
+            max-width: 600px;
+            margin: 60px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .check-icon {
+            font-size: 50px;
+            color: #27ae60;
+            margin-bottom: 20px;
+        }
+        .instruction-box {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            margin: 20px 0;
+            border-left: 5px solid #16213e;
+        }
+    </style>
+</head>
+<body>
+    <header><h1>MOGAKA ONLINE STORE</h1></header>
+
+    <div class="success-container">
+        <div class="check-icon">✔</div>
+        <h2 style="color: #16213e;">Order Received!</h2>
+        <p>Thank you for shopping with Mogaka Store. Your payment is being verified.</p>
+
+        <div class="instruction-box">
+            <h4 style="margin-top: 0;">Next Steps:</h4>
+            <ul>
+                <li><strong>Verification:</strong> We will confirm your M-Pesa/PayPal payment within 30 minutes.</li>
+                <li><strong>Delivery:</strong> Orders within Nairobi are delivered same-day. Outside Nairobi takes 24-48 hours via G4S or Easy Coach.</li>
+                <li><strong>Support:</strong> If you have any questions, click the WhatsApp button below.</li>
+            </ul>
+        </div>
+
+        <a href="index.html" class="buy-btn" style="text-decoration: none; display: inline-block;">Back to Home</a>
+    </div>
+
+    <a href="https://wa.me/254769128327?text=Hello%20Mogaka%20Store,%20I%20just%20placed%20an%20order." class="whatsapp-float" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA" width="25">
+        <span>Chat with Support</span>
+    </a>
+
+    <footer style="margin-top: 100px;">
+        <p>&copy; 2026 Mogaka Online Store. Reliable Tech in Kenya.</p>
+    </footer>
+
+    <script>
+        // Optional: Clear the cart after a successful order
+        localStorage.removeItem('cart');
+    </script>
+</body>
+</html>
