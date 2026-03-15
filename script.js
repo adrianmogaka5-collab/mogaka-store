@@ -1,94 +1,94 @@
-// --- 1. CART & INITIALIZATION ---
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-updateCartCount();
-
+// Add item to cart with a success notification
 function addToCart(name, price) {
-    cart.push({ name, price });
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // Check if item already exists in cart
+    const existingItem = cart.find(item => item.name === name);
+    
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({ name: name, price: price, quantity: 1 });
+    }
+    
     localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCount();
-    alert(name + " added to your cart!");
+    
+    // The Success Alert
+    alert("✅ " + name + " has been added to your cart!");
 }
 
-function updateCartCount() {
-    const el = document.getElementById('cartCount');
-    if (el) el.innerText = cart.length;
-}
+// Load and display cart items
+function displayCart() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const container = document.getElementById('cart-items');
+    const totalDisplay = document.getElementById('checkout-total');
+    
+    if (!container) return; // Exit if not on the cart page
 
-// --- 2. FILTERS ---
-function filterProducts() {
-    let input = document.getElementById('productSearch').value.toLowerCase();
-    let cards = document.getElementsByClassName('product-card');
-    for (let card of cards) {
-        let title = card.querySelector('h3').innerText.toLowerCase();
-        card.style.display = title.includes(input) ? "" : "none";
+    if (cart.length === 0) {
+        container.innerHTML = "<p style='color: #888; text-align: center; padding: 20px;'>Your cart is currently empty.</p>";
+        totalDisplay.innerText = "KSh 0";
+        return;
     }
-}
 
-function filterCategory(cat) {
-    let cards = document.getElementsByClassName('product-card');
-    let buttons = document.getElementsByClassName('filter-btn');
-    for (let btn of buttons) {
-        btn.classList.remove('active');
-        if (btn.innerText.toLowerCase() === cat) btn.classList.add('active');
-    }
-    for (let card of cards) {
-        let itemCat = card.getAttribute('data-category');
-        card.style.display = (cat === 'all' || itemCat === cat) ? "" : "none";
-    }
-}
+    let html = "";
+    let total = 0;
 
-// --- 3. CURRENCY ---
-function updateCurrency() {
-    const currency = document.getElementById('currencySelector').value;
-    const priceTags = document.querySelectorAll('.price-tag');
-    const rate = 130;
-    priceTags.forEach(tag => {
-        let base = parseFloat(tag.getAttribute('data-price'));
-        tag.innerText = currency === "KSH" ? "KSh " + (base * rate).toLocaleString() : "$" + base.toFixed(2);
+    cart.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        html += `
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid #eee;">
+                <div>
+                    <strong style="font-size: 1.1em;">${item.name}</strong><br>
+                    <span style="color: #666;">KSh ${item.price.toLocaleString()} x ${item.quantity}</span>
+                </div>
+                <div>
+                    <span style="font-weight: bold; margin-right: 15px;">KSh ${itemTotal.toLocaleString()}</span>
+                    <button onclick="removeItem(${index})" style="color: #e74c3c; background: none; border: none; cursor: pointer; font-weight: bold;">Remove</button>
+                </div>
+            </div>
+        `;
     });
+
+    container.innerHTML = html;
+    totalDisplay.innerText = `KSh ${total.toLocaleString()}`;
 }
 
-// --- 4. CHECKOUT ---
-function calculateTotal() { return cart.reduce((sum, item) => sum + item.price, 0); }
-
-function checkoutMpesa() {
-    if(cart.length === 0) return alert("Cart is empty!");
-    let total = (calculateTotal() * 130).toLocaleString();
-    let msg = `Hello Mogaka Store, I want to pay KSh ${total} via M-Pesa.`;
-    window.open(`https://wa.me/254769128327?text=${encodeURIComponent(msg)}`, '_blank');
-    window.location.href = "thank-you.html";
+// Remove item function
+function removeItem(index) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    displayCart();
 }
 
-// --- 5. EXTRAS (Timer, Reviews, Newsletter) ---
-function startCountdown() {
-    const countDownDate = new Date().getTime() + (12 * 60 * 60 * 1000);
-    setInterval(function() {
-        const now = new Date().getTime();
-        const dist = countDownDate - now;
-        if (document.getElementById("hours")) {
-            document.getElementById("hours").innerHTML = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            document.getElementById("mins").innerHTML = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById("secs").innerHTML = Math.floor((dist % (1000 * 60)) / 1000);
-        }
-    }, 1000);
-}
+// WhatsApp Order Logic
+function sendOrderWhatsApp() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const totalElement = document.getElementById('checkout-total');
+    const total = totalElement ? totalElement.innerText : "0";
 
-function submitReview() {
-    let name = document.getElementById('revName').value;
-    if(!name) return alert("Enter name!");
-    document.getElementById('reviewList').innerHTML += `<p><strong>${name}</strong> ⭐⭐⭐⭐⭐<br>"Great products!"</p>`;
-    document.getElementById('revName').value = "";
-}
-
-function subscribe() {
-    let email = document.getElementById('newsEmail').value;
-    if(email.includes("@")) {
-        alert("Subscribed! Check your inbox for Mogaka Store deals.");
-        document.getElementById('newsEmail').value = "";
+    if (cart.length === 0) {
+        alert("Please add items to your cart first!");
+        return;
     }
+
+    let msg = "🚀 *NEW ORDER: MOGAKA ONLINE STORE*%0A";
+    msg += "-----------------------------------%0A";
+    cart.forEach(item => {
+        msg += `• ${item.name} (x${item.quantity}) - KSh ${item.price * item.quantity}%0A`;
+    });
+    msg += "-----------------------------------%0A";
+    msg += `💰 *TOTAL:* ${total}%0A`;
+    msg += `✅ *PAYMENT:* M-PESA Sent to 0769128327%0A%0A`;
+    msg += `📍 *Delivery Info:* [Type your Name & Location here]`;
+
+    const phone = "254769128327";
+    window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
 }
 
-window.onload = () => {
-    if(document.getElementById('currencySelector')) updateCurrency();
-    startCountdown();
+// Run on load
+window.onload = function() {
+    displayCart();
 };
