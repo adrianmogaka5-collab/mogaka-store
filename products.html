@@ -3,91 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catalog - Mogaka Online Store</title>
+    <title>Mogaka Tech | Master Catalog</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Modern UI & "Decorated" Features */
+        .badge { position: absolute; top: 10px; left: 10px; color: white; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; z-index: 5; }
+        .flash-sale { background: #e74c3c; }
+        .stars { color: #f1c40f; margin: 8px 0; font-size: 13px; }
+        .timer { background: #feebeb; color: #e74c3c; padding: 5px; border-radius: 5px; font-size: 12px; margin: 10px 0; font-weight: bold; }
+        .product-card { position: relative; border: 1px solid #eee; padding: 15px; border-radius: 12px; text-align: center; background: white; transition: 0.3s; }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
+        .product-card img { width: 100%; height: 160px; object-fit: contain; }
+        .category-btn { padding: 8px 18px; border-radius: 20px; border: 1px solid #003366; background: white; cursor: pointer; margin: 4px; font-weight: bold; }
+        .category-btn.active { background: #003366; color: white; }
+        #search-input { width: 90%; max-width: 500px; padding: 12px; border-radius: 25px; border: 2px solid #eee; margin-bottom: 20px; }
+    </style>
 </head>
 <body>
-    <header><h1>MOGAKA TECH CATALOG</h1></header>
-
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="products.html">Products</a>
-        <a href="cart.html">Cart (<span id="cartCount">0</span>)</a>
-        <a href="about.html">About</a>
-        <a href="legal.html">Legal</a>
-        <a href="contact.html">Contact</a>
-        <select id="currencySelector" onchange="updateCurrency()">
+    <header style="background: #1a1a2e; color: white; padding: 25px 15px; text-align: center;">
+        <h1>MOGAKA TECH CATALOG</h1>
+        <nav style="margin-bottom: 15px;">
+            <a href="index.html" style="color:white; margin:10px; text-decoration:none;">Home</a>
+            <a href="products.html" style="color:white; margin:10px; text-decoration:none; border-bottom: 2px solid white;">Products</a>
+            <a href="cart.html" style="color:white; margin:10px; text-decoration:none;">Cart <span id="cart-count">(0)</span></a>
+            <a href="legal.html" style="color:white; margin:10px; text-decoration:none;">Legal</a>
+        </nav>
+        <select id="currency-selector" onchange="renderProducts();" style="padding: 6px; border-radius: 5px;">
+            <option value="KSh" selected>KSh (M-PESA)</option>
             <option value="USD">USD ($)</option>
-            <option value="KSH">KSH (KSh)</option>
         </select>
-    </nav>
+    </header>
 
-    <div style="text-align: center; margin-top: 30px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
-        <button class="filter-btn active" onclick="filterCategory('all')">All</button>
-        <button class="filter-btn" onclick="filterCategory('laptops')">Laptops</button>
-        <button class="filter-btn" onclick="filterCategory('phones')">Phones</button>
-        <button class="filter-btn" onclick="filterCategory('accessories')">Accessories</button>
-    </div>
+    <main style="padding: 20px; max-width: 1200px; margin: auto;">
+        <div style="text-align: center;">
+            <input type="text" id="search-input" placeholder="Search brands (HP, Apple...)" onkeyup="filterAll()">
+        </div>
 
-    <div style="max-width: 600px; margin: 20px auto; padding: 0 20px;">
-        <input type="text" id="productSearch" onkeyup="filterProducts()" placeholder="Search brands (HP, Apple, Samsung...)" style="width: 100%; padding: 15px; border-radius: 50px; border: 2px solid #16213e; outline: none;">
-    </div>
+        <div style="text-align: center; margin-bottom: 20px;">
+            <button class="category-btn active" id="btn-All" onclick="setCategory('All')">All</button>
+            <button class="category-btn" id="btn-Laptops" onclick="setCategory('Laptops')">Laptops</button>
+            <button class="category-btn" id="btn-Phones" onclick="setCategory('Phones')">Phones</button>
+        </div>
 
-    <div class="product-container">
-        <div class="product-card" data-category="phones">
-            <div class="badge hot">Flash Sale</div>
-            <img src="iphone15.jpg" alt="iPhone 15" onerror="this.src='https://via.placeholder.com/300x200?text=iPhone+15'">
-            <h3>iPhone 15 128GB</h3>
-            <div class="rating">⭐⭐⭐⭐⭐ (24 Reviews)</div>
-            <div class="timer-container">
-                <div class="timer-box"><span id="hours">12</span><small>Hrs</small></div>
-                <div class="timer-box"><span id="mins">00</span><small>Min</small></div>
-                <div class="timer-box"><span id="secs">00</span><small>Sec</small></div>
+        <div id="product-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;"></div>
+
+        <section style="padding: 40px 20px; background: #fdfdfd; margin-top: 40px; border-radius: 15px; border: 1px solid #eee;">
+            <h2>Customer Reviews</h2>
+            <div style="padding: 15px; border-bottom: 1px solid #eee;">
+                <strong>Bernadette K. ★★★★★</strong>
+                <p>"Original quality and fast delivery to Kisii!"</p>
             </div>
-            <span class="price-tag" data-price="1050">$1,050.00</span>
-            <button class="buy-btn" onclick="addToCart('iPhone 15 128GB', 1050)">Add to Cart</button>
+        </section>
+
+        <section style="background: #1a1a2e; color: white; padding: 40px; text-align: center; margin-top: 20px; border-radius: 15px;">
+            <h3>Join Mogaka Tech Club</h3>
+            <p>Subscribe for exclusive discounts on new arrivals.</p>
+            <input type="email" placeholder="Enter Email" style="padding: 10px; border-radius: 5px; width: 60%; max-width: 300px;">
+            <button style="background: #27ae60; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Subscribe</button>
+        </section>
+    </main>
+
+    <footer style="text-align: center; padding: 30px; background: #f9f9f9; margin-top: 40px;">
+        <div style="background: #e8f5e9; color: #2e7d32; padding: 8px 15px; border-radius: 20px; display: inline-block; border: 1px solid #2e7d32; font-weight: bold;">
+            ✅ Verified Mogaka Store Seller
         </div>
-
-        <div class="product-card" data-category="laptops">
-            <div class="badge seller">Best Seller</div>
-            <img src="hp_laptop.jpg" alt="HP Laptop" onerror="this.src='https://via.placeholder.com/300x200?text=HP+Laptop'">
-            <h3>HP 250 G8 Core i3</h3>
-            <div class="rating">⭐⭐⭐⭐☆ (15 Reviews)</div>
-            <span class="price-tag" data-price="450">$450.00</span>
-            <button class="buy-btn" onclick="addToCart('HP 250 G8 Core i3', 450)">Add to Cart</button>
-        </div>
-
-        <div class="product-card" data-category="accessories">
-            <img src="oraimo.jpg" alt="Oraimo" onerror="this.src='https://via.placeholder.com/300x200?text=Oraimo+Powerbank'">
-            <h3>Oraimo Traveler 27k mAh</h3>
-            <div class="rating">⭐⭐⭐⭐⭐ (40 Reviews)</div>
-            <span class="price-tag" data-price="35">$35.00</span>
-            <button class="buy-btn" onclick="addToCart('Oraimo Traveler 27k mAh', 35)">Add to Cart</button>
-        </div>
-    </div>
-
-    <section class="review-section">
-        <h3>Customer Reviews</h3>
-        <div id="reviewList">
-            <p><strong>Bernadette K.</strong> ⭐⭐⭐⭐⭐<br>"Original quality and fast delivery to Kisii!"</p>
-        </div>
-        <hr>
-        <input type="text" id="revName" placeholder="Your Name" style="padding:10px; border-radius:5px; border:1px solid #ddd;">
-        <button class="buy-btn" style="width:auto;" onclick="submitReview()">Post Review</button>
-    </section>
-
-    <section class="newsletter">
-        <h3>Join Mogaka Tech Club</h3>
-        <p>Subscribe for exclusive discounts on new arrivals.</p>
-        <input type="email" id="newsEmail" placeholder="Enter Email">
-        <button class="buy-btn" style="width:auto;" onclick="subscribe()">Subscribe</button>
-    </section>
-
-    <a href="https://wa.me/254769128327" class="whatsapp-float" target="_blank">Chat with Mogaka</a>
-
-    <footer>
-        <p>WhatsApp: +254 769 128327 | Email: support@mogakastore.com</p>
-        <p>&copy; 2026 Mogaka Online Store. Nairobi, Kenya.</p>
+        <p>© 2026 Mogaka Online Store | Kisii University Main Campus</p>
     </footer>
 
     <script src="script.js"></script>
