@@ -3,52 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cart - Mogaka Online Store</title>
+    <title>Your Cart | Mogaka Online Store</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <header>
-        <nav class="navbar">
-            <div class="logo">MOGAKA ONLINE STORE</div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="cart.html" class="active">Cart</a></li>
-                <li><a href="about.html">About</a></li>
-            </ul>
+<body style="margin: 0; font-family: Arial, sans-serif; background-color: #fdfdfd;">
+
+    <header style="background: #1a1a2e; color: white; padding: 25px 15px; text-align: center;">
+        <h1 style="margin: 0;">MOGAKA ONLINE STORE</h1>
+        <nav style="margin-top: 15px;">
+            <a href="index.html" style="color:white; margin:10px; text-decoration:none;">Home</a>
+            <a href="products.html" style="color:white; margin:10px; text-decoration:none;">Products</a>
+            <a href="cart.html" style="color:white; margin:10px; text-decoration:none; border-bottom: 2px solid white;">Cart <span id="cart-count">(0)</span></a>
         </nav>
     </header>
 
-    <main style="max-width: 600px; margin: 0 auto; padding: 20px;">
-        <h2 style="border-bottom: 2px solid #003366; padding-bottom: 10px;">Your Shopping Cart</h2>
-        
-        <div id="cart-items"></div>
-
-        <div style="margin-top: 30px; background: #f0f7ff; padding: 20px; border-radius: 10px;">
-            <h3>Order Summary</h3>
-            <p style="font-size: 1.5em; font-weight: bold; color: #27ae60;">Total Amount: <span id="checkout-total">KSh 0</span></p>
+    <main style="padding: 20px; max-width: 800px; margin: auto;">
+        <section style="background: white; padding: 25px; border-radius: 12px; border: 1px solid #eee; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+            <h2 style="border-bottom: 2px solid #1a1a2e; padding-bottom: 10px; margin-top: 0;">Your Shopping Cart</h2>
             
-            <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 15px; border: 1px solid #d0e3f7;">
-                <h4>How to Pay via M-PESA:</h4>
-                <ol style="padding-left: 20px; line-height: 1.8;">
-                    <li>Go to Lipa na M-PESA.</li>
-                    <li>Select <strong>Send Money</strong>.</li>
-                    <li>Enter Number: <strong>0769128327</strong>.</li>
-                    <li>Enter the Total Amount shown above.</li>
-                </ol>
-                <button onclick="sendOrderWhatsApp()" style="width: 100%; padding: 15px; background: #25D366; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 10px;">
+            <div id="cart-items-container" style="min-height: 100px;">
+                <p style="text-align: center; color: #888; padding: 20px;">Loading your items...</p>
+            </div>
+
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 2px solid #f4f4f4;">
+                <h3 style="margin-bottom: 10px;">Order Summary</h3>
+                
+                <p id="cart-total-display" style="font-size: 26px; color: #27ae60; font-weight: bold; margin: 10px 0;">
+                    Total Amount: KSh 0
+                </p>
+
+                <div style="background: #fffcf0; border-left: 4px solid #f1c40f; padding: 15px; margin: 20px 0; font-size: 14px;">
+                    <p style="margin: 0 0 5px 0;"><strong>M-PESA Payment Details:</strong></p>
+                    <p style="margin: 0;">Send Money to: <strong>0769128327</strong></p>
+                    <p style="margin: 0;">Recipient: <strong>Mogaka Online Store</strong></p>
+                </div>
+
+                <button id="confirm-payment-btn" style="background: #27ae60; color: white; width: 100%; padding: 18px; border: none; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; transition: background 0.3s;">
                     Confirm Payment & Send Order
                 </button>
+
+                <p style="text-align: center; margin-top: 20px;">
+                    <span id="clear-cart-action" style="color: #e74c3c; cursor: pointer; text-decoration: underline; font-size: 14px; font-weight: bold;">
+                        🗑️ Clear Shopping Cart
+                    </span>
+                </p>
             </div>
+        </section>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="products.html" style="color: #1a1a2e; text-decoration: none; font-weight: bold;">← Continue Shopping</a>
         </div>
     </main>
 
-    <footer style="text-align: center; padding: 40px 20px; background: #f9f9f9; border-top: 1px solid #ddd; margin-top: 50px;">
-        <div style="display: inline-block; background: #e8f5e9; color: #2e7d32; padding: 5px 15px; border-radius: 20px; font-weight: bold; border: 1px solid #2e7d32; margin-bottom: 10px;">
-            ✅ Verified Mogaka Store Seller
-        </div>
-        <p>© 2026 Mogaka Online Store</p>
-        <p id="last-updated" style="font-size: 0.8rem; color: #888;"></p>
+    <footer style="text-align: center; padding: 30px; color: #888; font-size: 13px;">
+        &copy; 2026 Mogaka Online Store. All Rights Reserved.
     </footer>
 
     <script src="script.js"></script>
